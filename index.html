@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輪播圖_1</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .carousel{
+            width: 509px;
+            height: 212px;
+            margin: 0 auto;
+            position: relative;
+            /*去掉li標籤前面的圖示*/
+        }
+        .carousel ul:nth-of-type(1){
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .carousel ul:nth-of-type(1) li{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .carousel ul:nth-of-type(1) li img{
+            width: 509px;
+            height: 212px;
+        }
+        .slide{
+            display: block;
+        }
+        .btn_at{
+            background-color: gold;
+        }
+        .btn_unat{
+            background-color: white;
+        }
+        .unslide{
+            display: none;
+        }
+        .carousel button{
+            color: black;
+            position: absolute;
+            height: 100%;
+            font-size: 25px;
+            font-weight: bold;
+            background-color: transparent;
+            border-width: 0;
+            color: white;
+            display: none;
+        }
+        .carousel .left_btn{
+            top: 0;
+            left: 0;
+        }
+        .carousel .right_btn{
+            top: 0;
+            right: 0;
+            vertical-align: middle;
+        }
+        .carousel ul:nth-of-type(2){
+            position: absolute;
+            bottom: 6px;
+            width: 16%;
+            height: 5%;
+            left: 42%; 
+        }
+        .carousel ul:nth-of-type(2) li{
+            float: left;
+            border-radius: 100%;
+            width: 8px;
+            height: 8px;
+            margin: 2px 10.7%;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <ul id="imgs">
+            <li class="slide">
+                <img src="https://csdnimg.cn/feed/20211213/5efbdefd5fe3fbdb332cba3d8a86d445.jpg" alt="">
+            </li>
+            <li class="unslide">
+                <img src="https://csdnimg.cn/feed/20211206/3b9fe6ae0a624ee0fc611cf9328d8876.jpg" alt="">
+            </li>
+            <li class="unslide">
+                <img src="https://csdnimg.cn/feed/20211221/cfbbeec83cf3af3549c3f932db89e0f3.jpg" alt="">
+            </li>
+        </ul>
+        <button class="left_btn">
+            &lt;
+        </button>
+         <!--向左按鈕 -->
+        <button class="right_btn">
+            &gt;
+        </button>
+         <!--向右按鈕 -->
+        <!-- 輪播圖下面的小圓點 -->
+        <ul id="btns">
+            <li class="btn_at"></li>
+            <li class="btn_unat"></li>
+            <li class="btn_unat"></li>
+        </ul>
+    </div>
+    <script>
+        var img_index = 0
+        var lis_1 = document.querySelectorAll("#imgs li")
+        var lis_2 = document.querySelectorAll("#btns li")
+        var left_btn = document.querySelector(".left_btn")
+        var right_btn = document.querySelector('.right_btn')
+        var carousel =  document.querySelector('.carousel')
+        var timeId 
+
+        function clear_img(){
+            lis_1.forEach(function(ele){
+                ele.className='unslide'  
+            })
+        }
+
+        function clear_btn(){
+            lis_2.forEach(function(ele){
+                ele.className='btn_unat'
+            })
+        }
+
+        function changePicture1(){
+            img_index++
+            if(img_index>2){
+                img_index=0
+            }
+            clear_img()
+            clear_btn()
+            lis_1[img_index].className='slide'
+            lis_2[img_index].className='btn_at'
+        }
+
+        function changePicture2(){
+            img_index--
+            if(img_index<0){
+                img_index=2
+            }
+            clear_img()
+            clear_btn()
+            lis_1[img_index].className='slide'
+            lis_2[img_index].className='btn_at'
+        }
+
+        timeId = setInterval(changePicture1,3000)
+        function stop(){
+            clearInterval(timeId)
+        }
+
+        function start(){
+            timeId = setInterval(changePicture1,3000)
+        }
+
+        lis_2.forEach((ele,index)=>{
+            ele.onclick=function(){
+                stop()
+                clear_btn()
+                clear_img()
+                lis_1[index].className='slide'
+                lis_2[index].className='btn_at'
+                img_index = index
+            }
+        })
+
+        left_btn.onclick=function(){
+            stop()
+            changePicture2()
+        }
+
+        right_btn.onclick=function(){
+            stop()
+            changePicture1()
+        }
+        
+        carousel.addEventListener('mouseover',function(){
+            left_btn.style.display='block'
+            right_btn.style.display='block'
+            this.style.opacity=0.5
+        },false)
+
+        carousel.addEventListener('mouseout',function(){
+            left_btn.style.display='none'
+            right_btn.style.display='none'
+            this.style.opacity=1
+        },false)
+
+        window.addEventListener('blur',()=>{
+            stop()
+            console.log('終止監聽')
+        },false)
+
+        window.addEventListener('focus',()=>{
+            start()
+            console.log('開始監聽')
+        },false)
+    </script>
+</body>
+</html>
