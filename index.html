@@ -2,132 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>測試輪播圖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>作品集</title>
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <div class="carousel">
-        <ul id="imgs">
-            <li class="slide">
-                <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image1.png?raw=true" alt="">
-            </li>
-            <li class="unslide">
-                <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image2.png?raw=true" alt="">
-            </li>
-            <li class="unslide">
-                <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image3.png?raw=true" alt="">
-            </li>
-        </ul>
-        <button class="left_btn">
-            &lt;
-        </button>
-         <!--向左按鈕 -->
-        <button class="right_btn">
-            &gt;
-        </button>
-         <!--向右按鈕 -->
-        <!-- 輪播圖下面的小圓點 -->
-        <ul id="btns">
-            <li class="btn_at"></li>
-            <li class="btn_unat"></li>
-            <li class="btn_unat"></li>
-        </ul>
+    <div class="header">
+        <div class="maxWidth">
+          <a href="#"><img src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/a0deba953fc5322a513e717e7c24b25fa3d946f8/2024%20web-camp/logo.svg" alt="logo"></a>
+          <ul class="nav">
+            <li><a href="#">首頁</a></li>
+            <li class="chief"><a href="#">作品集</a></li>
+            <li><a href="#">服務項目</a></li>
+            <li><a href="#">部落格</a></li>
+            <li><a href="#">聯絡我</a></li>
+          </ul>
+          <a href="#"><span class="material-icons">menu</span></a>
+        </div>
     </div>
-    <script>
-        var img_index = 0
-        var lis_1 = document.querySelectorAll("#imgs li")
-        var lis_2 = document.querySelectorAll("#btns li")
-        var left_btn = document.querySelector(".left_btn")
-        var right_btn = document.querySelector('.right_btn')
-        var carousel =  document.querySelector('.carousel')
-        var timeId 
-
-        function clear_img(){
-            lis_1.forEach(function(ele){
-                ele.className='unslide'  
-            })
-        }
-
-        function clear_btn(){
-            lis_2.forEach(function(ele){
-                ele.className='btn_unat'
-            })
-        }
-
-        function changePicture1(){
-            img_index++
-            if(img_index>2){
-                img_index=0
-            }
-            clear_img()
-            clear_btn()
-            lis_1[img_index].className='slide'
-            lis_2[img_index].className='btn_at'
-        }
-
-        function changePicture2(){
-            img_index--
-            if(img_index<0){
-                img_index=2
-            }
-            clear_img()
-            clear_btn()
-            lis_1[img_index].className='slide'
-            lis_2[img_index].className='btn_at'
-        }
-
-        timeId = setInterval(changePicture1,3000)
-        function stop(){
-            clearInterval(timeId)
-        }
-
-        function start(){
-            timeId = setInterval(changePicture1,3000)
-        }
-
-        lis_2.forEach((ele,index)=>{
-            ele.onclick=function(){
-                stop()
-                clear_btn()
-                clear_img()
-                lis_1[index].className='slide'
-                lis_2[index].className='btn_at'
-                img_index = index
-            }
-        })
-
-        left_btn.onclick=function(){
-            stop()
-            changePicture2()
-        }
-
-        right_btn.onclick=function(){
-            stop()
-            changePicture1()
-        }
-        
-        carousel.addEventListener('mouseover',function(){
-            left_btn.style.display='block'
-            right_btn.style.display='block'
-            this.style.opacity=0.5
-        },false)
-
-        carousel.addEventListener('mouseout',function(){
-            left_btn.style.display='none'
-            right_btn.style.display='none'
-            this.style.opacity=1
-        },false)
-
-        window.addEventListener('blur',()=>{
-            stop()
-            console.log('終止監聽')
-        },false)
-
-        window.addEventListener('focus',()=>{
-            start()
-            console.log('開始監聽')
-        },false)
-    </script>
+    <div class="banner">
+        <div class="maxWidth title">
+          <h1>讓使用者在觀賞與使用的旅程中，<br><span class="stress">發現設計的價值</span></h1>
+          <h1>而我在設計與開發的過程中，<br><span class="stress">看見自己的價值</span></h1>
+        </div>
+        <div class="maxWidth subtitle">
+          <div class="section">
+            <h2>2B經驗</h2>
+            <p>內部監控系統、庫存系統、採購系統、行銷整合系統</p>
+          </div>
+          <div class="section">
+            <h2>2C經驗</h2>
+            <p>跨國美妝保養電商、個人品牌網站、醫美網站、電子商務</p>
+          </div>
+        </div>
+    </div>
+    <ul class="maxWidth content">
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image1.png?raw=true" alt="星際旅行訂票平台">
+          <div class="article">
+            <h2>星際旅行訂票平台</h2>
+            <p>悠遊宇宙的夢想，從這裡開始實現</p>
+            <ul class="tag">
+              <li>網頁設計</li>
+              <li>響應式設計</li>
+              <li>Bootstrap</li>
+            </ul>
+          </div>
+        </li>
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image2.png?raw=true" alt="理財App">
+          <div class="article">
+            <h2>理財App</h2>
+            <p>連動帳戶與行動支付，讓 AI 提供您最好的理財建議</p>
+            <ul class="tag">
+              <li>APP設計</li>
+              <li>iOS</li>
+              <li>React</li>
+            </ul>
+          </div>  
+        </li>
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image3.png?raw=true" alt="醫美診所官網">
+          <div class="article">
+            <h2>醫美診所官網</h2>
+            <p>永保青春的秘密，從粹究開始</p>
+            <ul class="tag">
+              <li>網頁設計</li>
+              <li>響應式設計</li>
+              <li>ＷordPress</li>
+            </ul>
+          </div>
+        </li>
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image4.png?raw=true" alt="美美美早餐店 POS 機 UI Design">
+          <div class="article">
+            <h2>美美美早餐店 POS 機 UI Design</h2>
+            <p>訂單送單一目瞭然，自動報表分析好輕鬆</p>
+            <ul class="tag">
+              <li>UI 設計</li>
+              <li>前端開發</li>
+              <li>Wix</li>
+            </ul>
+          </div>  
+        </li>
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image5.png?raw=true" alt="電影院訂票系統">
+          <div class="article">
+            <h2>電影院訂票系統</h2>
+            <p>三步驟完成訂票，電腦手機都支援</p>
+            <ul class="tag">
+              <li>前端開發</li>
+              <li>後端支援</li>
+              <li>Vue</li>
+            </ul>
+          </div>
+        </li>
+        <li class="section">
+          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/work-image6.png?raw=true" alt="巧克巧克形象官網設計">
+          <div class="article">
+            <h2>巧克巧克形象官網設計</h2>
+            <p>三步驟完成訂票，電腦手機都支援</p>
+            <ul class="tag">
+              <li>UI 設計</li>
+              <li>設計系統</li>
+              <li>網路電商</li>
+            </ul>
+          </div>  
+        </li>
+    </ul>
+    <div class="footer">
+        <div class="maxWidth">
+          <div class="declare">
+            <img src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/2f8d8c7a6133b448ecff5bf0a3d282b87b7c6a7e/2024%20web-camp/logo.svg" alt="logo">
+            <p>若有數位產品設計和開發相關問題<br>
+              歡迎填寫表單，或直接與我聯絡！</p>
+            <span>service@hexschool.com</span>
+          </div>
+          <ul class="contact">
+            <li><a href="#"><img src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/2f8d8c7a6133b448ecff5bf0a3d282b87b7c6a7e/2024%20web-camp/list.svg" alt="list">填寫表單</a></li>
+            <li><a href="#"><img src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/2f8d8c7a6133b448ecff5bf0a3d282b87b7c6a7e/2024%20web-camp/instagram.svg" alt="instagram">hexschool_demo</a></li>
+            <li><a href="#"><img src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/2f8d8c7a6133b448ecff5bf0a3d282b87b7c6a7e/2024%20web-camp/facebook.svg" alt="facebook">hexschoolTW</a></li>
+          </ul>
+        </div>
+      </div>
 </body>
 </html>
