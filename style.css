@@ -179,9 +179,6 @@
   
   /*  banner手機版  */
   @media (max-width:767px) {
-    .maxWidth{
-      /*max-width: 80%;*/
-    }
     .banner{
       padding: 40px 0;
     }
